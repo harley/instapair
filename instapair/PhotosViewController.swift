@@ -8,9 +8,33 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var photos:NSArray!
+    var photos: [NSDictionary]?
+    
+    @IBOutlet weak var photosTableView: UITableView!
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell") as! PhotoCell
+        
+        let photo = photos![indexPath.row] as NSDictionary
+        
+        println(photo)
+        let url = NSURL(string: photo.valueForKeyPath("images.low_resolution.url") as! String)!
+        cell.photoImageView.setImageWithURL(url)
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let photos = photos {
+            return photos.count
+        } else {
+            return 0
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +45,20 @@ class PhotosViewController: UIViewController {
         
         let request = NSURLRequest(URL: url!)
         
+        self.photosTableView.delegate = self
+        self.photosTableView.dataSource = self
+        
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             
             let responseDic = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
             
-            self.photos = responseDic["data"] as! NSArray
-            println(self.photos)
+            self.photos = responseDic["data"] as? [NSDictionary]
+//            println(self.photos)
+            self.photosTableView.reloadData()
+            
          
         }
+        photosTableView.rowHeight = 320
         // Do any additional setup after loading the view.
     }
 

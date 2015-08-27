@@ -14,6 +14,7 @@
 		E21CF1B21B8F328700027421 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21CF1B11B8F328700027421 /* Images.xcassets */; };
 		E21CF1B51B8F328700027421 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21CF1B31B8F328700027421 /* LaunchScreen.xib */; };
 		E21CF1C11B8F328700027421 /* instapairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CF1C01B8F328700027421 /* instapairTests.swift */; };
+		E295DAD61B8F3CEB000DA1F7 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295DAD51B8F3CEB000DA1F7 /* PhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,8 @@
 		E21CF1BA1B8F328700027421 /* instapairTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = instapairTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21CF1BF1B8F328700027421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21CF1C01B8F328700027421 /* instapairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instapairTests.swift; sourceTree = "<group>"; };
+		E295DAD51B8F3CEB000DA1F7 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		E295DAD71B8F3DD0000DA1F7 /* instapair-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "instapair-Bridging-Header.h"; sourceTree = "<group>"; };
 		E6742C8E4743596F39021E84 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +110,8 @@
 				E21CF1B11B8F328700027421 /* Images.xcassets */,
 				E21CF1B31B8F328700027421 /* LaunchScreen.xib */,
 				E21CF1A81B8F328700027421 /* Supporting Files */,
+				E295DAD51B8F3CEB000DA1F7 /* PhotoCell.swift */,
+				E295DAD71B8F3DD0000DA1F7 /* instapair-Bridging-Header.h */,
 			);
 			path = instapair;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21CF1AB1B8F328700027421 /* AppDelegate.swift in Sources */,
+				E295DAD61B8F3CEB000DA1F7 /* PhotoCell.swift in Sources */,
 				28B79ADC1B8F35A90042C354 /* PhotosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,9 +422,12 @@
 			baseConfigurationReference = 05FAE9F3891C552D46386E30 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = instapair/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "instapair/instapair-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -427,9 +436,11 @@
 			baseConfigurationReference = E6742C8E4743596F39021E84 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = instapair/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "instapair/instapair-Bridging-Header.h";
 			};
 			name = Release;
 		};
