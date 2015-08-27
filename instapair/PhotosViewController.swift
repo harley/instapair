@@ -9,8 +9,11 @@
 import UIKit
 
 class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
+    var refreshControl:UIRefreshControl!
     var photos: [NSDictionary]?
+    var feedUrl: NSURL?
+    var feedRequest: NSURLRequest?
     
     @IBOutlet weak var photosTableView: UITableView!
     
@@ -47,25 +50,24 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
 
         let keyId = "bb96edf46d6940fdac2105ac1779296b"
         
-        let url = NSURL(string: "https://api.instagram.com/v1/media/popular?client_id=\(keyId)")
-        
-        let request = NSURLRequest(URL: url!)
+        self.feedUrl = NSURL(string: "https://api.instagram.com/v1/media/popular?client_id=\(keyId)")!
+        self.feedRequest = NSURLRequest(URL: feedUrl!)
         
         self.photosTableView.delegate = self
         self.photosTableView.dataSource = self
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-            
-            let responseDic = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
-            
-            self.photos = responseDic["data"] as? [NSDictionary]
-//            println(self.photos)
-            self.photosTableView.reloadData()
-            
-         
-        }
+        loadPhotos()
+        
         photosTableView.rowHeight = 320
         // Do any additional setup after loading the view.
+        
+        
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+
+        self.photosTableView.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +76,21 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 
+    func loadPhotos(refreshing: Bool = false) {
+        NSURLConnection.sendAsynchronousRequest(feedRequest!, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            
+            let responseDic = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as! NSDictionary
+            
+            self.photos = responseDic["data"] as? [NSDictionary]
+            //            println(self.photos)
+            self.photosTableView.reloadData()
+            
+            if refreshing {
+                self.refreshControl.endRefreshing()
+            }
+        }
 
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -92,5 +108,9 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         vc.photoDict = photo
     }
 
+    func refresh(sender: AnyObject) {
+//        println(sender)
+        loadPhotos(refreshing: true)
+    }
 
 }
