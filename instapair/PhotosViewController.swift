@@ -20,7 +20,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         
         let photo = photos![indexPath.row] as NSDictionary
         
-        println(photo)
+//        println(photo)
         let url = NSURL(string: photo.valueForKeyPath("images.low_resolution.url") as! String)!
         cell.photoImageView.setImageWithURL(url)
         return cell
@@ -33,6 +33,12 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             return 0
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        photosTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        
     }
     
     
@@ -68,14 +74,23 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        var vc = segue.destinationViewController as! PhotoDetailsViewController
+        
+        var indexPath = photosTableView.indexPathForCell(sender as! PhotoCell)
+        
+        let photo = photos![indexPath!.row] as NSDictionary
+        
+//        let url = NSURL(string: photo.valueForKeyPath("images.standard_resolution.url") as! String)!
+        
+        vc.photoDict = photo
     }
-    */
+
 
 }
