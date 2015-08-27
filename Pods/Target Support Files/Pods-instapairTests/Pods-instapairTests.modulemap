@@ -1,0 +1,6 @@
+framework module Pods_instapairTests {
+  umbrella header "Pods-instapairTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
