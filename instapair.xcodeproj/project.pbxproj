@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28B79ADC1B8F35A90042C354 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B79ADB1B8F35A90042C354 /* PhotosViewController.swift */; };
 		E1FD9BB9C9E1010957CF625A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9E2D60A32CD39D25B37B98 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E21CF1AB1B8F328700027421 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CF1AA1B8F328700027421 /* AppDelegate.swift */; };
 		E21CF1B01B8F328700027421 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21CF1AE1B8F328700027421 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		05FAE9F3891C552D46386E30 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		28B79ADB1B8F35A90042C354 /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		DE9E2D60A32CD39D25B37B98 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21CF1A51B8F328700027421 /* instapair.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instapair.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21CF1A91B8F328700027421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		E21CF1A71B8F328700027421 /* instapair */ = {
 			isa = PBXGroup;
 			children = (
+				28B79ADB1B8F35A90042C354 /* PhotosViewController.swift */,
 				E21CF1AA1B8F328700027421 /* AppDelegate.swift */,
 				E21CF1AE1B8F328700027421 /* Main.storyboard */,
 				E21CF1B11B8F328700027421 /* Images.xcassets */,
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21CF1AB1B8F328700027421 /* AppDelegate.swift in Sources */,
+				28B79ADC1B8F35A90042C354 /* PhotosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
